@@ -1,0 +1,46 @@
+You wake up in an unknown foyer. You don't remember anything. To your north, there is a locked door. In the room, there is a bench, a chest, an unlit candle, and a note. Escape the room in 30 turns. Type help for options.
+>> open chest
+Inside the chest, there is a box of matches.
+You have 29 turns left to escape.
+>> get matches
+You take the box of matches out of the chest.
+You have 28 turns left to escape.
+>> light candle
+You light the candle. You hear a loud metal grinding sound from the north.
+You have 27 turns left to escape.
+>> open door
+The door opens.
+You have 26 turns left to escape.
+>> go north
+You leave the room.
+You enter a library with stacks of books lining the shelves. There is a desk, a pen, and a scroll. The door to the north is locked. Escape the room in 30 turns. Type help for options.
+>> get pen
+You pick up the pen.
+You have 25 turns left to escape.
+>> write pen
+You write your name in the empty space. You hear a loud metal grinding sound from the north.
+You have 24 turns left to escape.
+>> open door
+The door opens.
+You have 23 turns left to escape.
+>> go north
+You leave the room.
+You enter a conservatory with three instruments: a trumpet, a drum, and a piano. There is a piece of sheet music in the center of the room. On the north side of the room, there is a locked door. Escape the room in 30 turns. Type help for options.
+>> get trumpet
+You pick up the trumpet.
+You have 22 turns left to escape.
+>> play trumpet
+You play the trumpet.
+You have 21 turns left to escape.
+>> play piano
+You play the piano.
+You have 20 turns left to escape.
+>> play drum
+You play the drum. You hear a loud metal grinding sound from the north.
+You have 19 turns left to escape.
+>> open door
+The door opens.
+You have 18 turns left to escape.
+>> go north
+You leave the room.
+You made it out of the escape room! Congratulations!
