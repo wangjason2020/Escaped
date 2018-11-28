@@ -11,7 +11,6 @@ public class Main {
     public static boolean hasPen=false;
     public static boolean trumpetPlayed=false;
     public static boolean pianoPlayed=false;
-    public static boolean hasTrumpet=false;
 
     public static void main(String[] args) {
 	// write your code here
@@ -26,7 +25,7 @@ public class Main {
 
         if (command.equals("help")) {
             System.out.println("List of verb commands: open, close, light, read, write, play, look, get, go");
-            System.out.println("List of noun commands: door, room, bench, chest, candle, note, matches, shelves, book, pen, scroll, music, trumpet, piano, drum, lock, north, south, east, west");
+            System.out.println("List of noun commands: door, room, bench, chest, candle, note, matches, shelves, shelf, book, pen, scroll, music, trumpet, piano, drum, lock, north, south, east, west");
         }
 
         if (command.equals("look")) {
@@ -55,7 +54,7 @@ public class Main {
         }
 
         if (command.equals("look note")) {
-            System.out.println("The note says: May my light show you the way.");
+            System.out.println("There is a note on top of the bench.");
             turnsLeft();
         }
 
@@ -85,19 +84,24 @@ public class Main {
             if (hasMatches==true) {
                 System.out.println("It's a box of matches.");
             }
-            else {
+            if (hasMatches==false) {
                 System.out.println("You need the matches first.");
             }
             turnsLeft();
         }
 
         if (command.equals("light candle")) {
-            if (hasMatches==true) {
-                System.out.println("You light the candle. You hear a loud metal grinding sound from the north.");
-                doorLocked=false;
+            if (room==1) {
+                if (hasMatches==true) {
+                    System.out.println("You light the candle. You hear a loud metal grinding sound from the north.");
+                    doorLocked = false;
+                }
+            }
+            if (room!=1) {
+                System.out.println("You light the candle.");
             }
             if (hasMatches==false) {
-                System.out.println("You need the matches first.");
+                System.out.println("You need to get the matches first.");
             }
             turnsLeft();
         }
@@ -166,6 +170,16 @@ public class Main {
             turnsLeft();
         }
 
+        if (command.equals("look shelf")) {
+            if (room==2) {
+                System.out.println("The shelves are lined with books. Upon closer inspection, you notice there is an open book on one of the shelves.");
+            }
+            if (room!=2) {
+                System.out.println("You cannot do that.");
+            }
+            turnsLeft();
+        }
+
         if (command.equals("look desk")) {
             if (room==2) {
                 System.out.println("It's a nice rectangular desk. Probably mahogany.");
@@ -178,7 +192,7 @@ public class Main {
 
         if (command.equals("look book")) {
             if (room==2) {
-                System.out.println("The book is titled: The Autobiography of...");
+                System.out.println("You see a book protruding from the shelves.");
             }
             if (room!=2) {
                 System.out.println("You cannot do that.");
@@ -198,7 +212,7 @@ public class Main {
 
         if (command.equals("look scroll")) {
             if (room==2) {
-                System.out.println("The scroll says: Share your story.");
+                System.out.println("There is a scroll on top of the desk.");
             }
             if (room!=2) {
                 System.out.println("You cannot do that.");
@@ -208,8 +222,8 @@ public class Main {
 
         if (command.equals("read book")) {
             if (room==2) {
-                System.out.println("The book is titled: The Autobiography of...");
-            }
+                    System.out.println("The book is titled: The Autobiography of...");
+                }
             if (room!=2) {
                 System.out.println("You cannot do that.");
             }
@@ -237,14 +251,15 @@ public class Main {
             turnsLeft();
         }
 
-        if (command.equals("write pen")) {
+        if (command.equals("write book")) {
             if (room==2) {
                 if (hasPen==true) {
-                    System.out.println("You write your name in the empty space. You hear a loud metal grinding sound from the north.");
-                    doorLocked=false;
+                        System.out.println("You write your name in the empty space. You hear a loud metal grinding sound from the north.");
+                        doorLocked=false;
                 }
-                else
+                if (hasPen==false) {
                     System.out.println("You need to get the pen first.");
+                }
             }
             if (room!=2) {
                 System.out.println("You cannot do that.");
@@ -255,17 +270,6 @@ public class Main {
         if (command.equals("look trumpet")) {
             if (room==3) {
                 System.out.println("It's a trumpet.");
-            }
-            if (room!=3) {
-                System.out.println("You cannot do that.");
-            }
-            turnsLeft();
-        }
-
-        if (command.equals("get trumpet")) {
-            if (room==3) {
-                System.out.println("You pick up the trumpet.");
-                hasTrumpet=true;
             }
             if (room!=3) {
                 System.out.println("You cannot do that.");
@@ -295,7 +299,7 @@ public class Main {
 
         if (command.equals("look music")) {
             if (room==3) {
-                System.out.println("The music sheet is empty, but has this phrase written on the musical staff: Timbre, Tone, and Time.");
+                System.out.println("There is a music sheet on a stand in the middle of the room.");
             }
             if (room!=3) {
                 System.out.println("You cannot do that.");
@@ -315,13 +319,9 @@ public class Main {
 
         if (command.equals("play trumpet")) {
             if (room==3) {
-                if (hasTrumpet=true) {
                     System.out.println("You play the trumpet.");
                     trumpetPlayed=true;
                 }
-                else
-                    System.out.println("You have to get the trumpet first.");
-            }
             if (room!=3) {
                 System.out.println("You cannot do that.");
             }
@@ -330,11 +330,20 @@ public class Main {
 
         if (command.equals("play piano")) {
             if (room==3) {
-                if (trumpetPlayed=true) {
-                    System.out.println("You play the piano.");
-                    pianoPlayed=true;
+                if (pianoPlayed==true) {
+                    System.out.println("You play the piano but nothing happens. Maybe try playing the instruments in a different order.");
+                    trumpetPlayed=false;
                 }
+                if (pianoPlayed==false) {
+                    if (trumpetPlayed==true) {
+                        System.out.println("You play the piano.");
+                        pianoPlayed=true;
+                    }
+                    if (trumpetPlayed==false) {
+                        System.out.println("You play the piano but nothing happens. Maybe try playing the instruments in a different order.");
+                    }
                 }
+            }
             if (room!=3) {
                 System.out.println("You cannot do that.");
             }
@@ -343,11 +352,16 @@ public class Main {
 
         if (command.equals("play drum")) {
             if (room==3) {
-                if (trumpetPlayed=true) {
-                    if (pianoPlayed=true) {
+                if (trumpetPlayed==true) {
+                    if (pianoPlayed==true) {
                         System.out.println("You play the drum. You hear a loud metal grinding sound from the north.");
                         doorLocked=false;
                     }
+                }
+                if (trumpetPlayed==false||pianoPlayed==false) {
+                    System.out.println("You play the drum but nothing happens. Maybe try playing the instruments in a different order.");
+                    trumpetPlayed=false;
+                    pianoPlayed=false;
                 }
             }
             if (room!=3) {
@@ -379,7 +393,7 @@ public class Main {
                                                                                             if (!(command.equals("read book"))) {
                                                                                                 if (!(command.equals("read scroll"))) {
                                                                                                     if (!(command.equals("get pen"))) {
-                                                                                                        if (!(command.equals("write pen"))) {
+                                                                                                        if (!(command.equals("write book"))) {
                                                                                                             if (!(command.equals("look trumpet"))) {
                                                                                                                 if (!(command.equals("look piano"))) {
                                                                                                                     if (!(command.equals("look drum"))) {
@@ -388,9 +402,9 @@ public class Main {
                                                                                                                                 if (!(command.equals("play trumpet"))) {
                                                                                                                                     if (!(command.equals("play piano"))) {
                                                                                                                                         if (!(command.equals("play drum"))) {
-                                                                                                                                            if (!(command.equals("get trumpet"))) {
-                                                                                                                                                System.out.println("You cannot do that.");
-                                                                                                                                                turnsLeft();
+                                                                                                                                                    if (!(command.equals("look shelf"))) {
+                                                                                                                                                        System.out.println("You cannot do that.");
+                                                                                                                                                        turnsLeft();
                                                                                                                                             }
                                                                                                                                         }
                                                                                                                                     }
@@ -437,10 +451,10 @@ public class Main {
             System.out.println("You wake up in an unknown foyer. You don't remember anything. To your north, there is a locked door. In the room, there is a bench, a chest, an unlit candle, and a note. Escape the room in 30 turns. Type help for options.");
         }
         if (room==2) {
-            System.out.println("You enter a library with stacks of books lining the shelves. There is a desk, a pen, and a scroll. The door to the north is locked. Escape the room in 30 turns. Type help for options.");
+            System.out.println("You enter a library with stacks of books lining the shelves. There is a desk, a pen, and a scroll. The door to the north is locked. Type help for options.");
         }
         if (room==3) {
-            System.out.println("You enter a conservatory with three instruments: a trumpet, a drum, and a piano. There is a piece of sheet music in the center of the room. On the north side of the room, there is a locked door. Escape the room in 30 turns. Type help for options.");
+            System.out.println("You enter a conservatory with three instruments: a trumpet, a drum, and a piano. There is a piece of sheet music in the center of the room. On the north side of the room, there is a locked door. Type help for options.");
         }
     }
 
