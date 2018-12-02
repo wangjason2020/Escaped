@@ -354,7 +354,7 @@ public class Main {
             if (room==3) {
                 if (trumpetPlayed==true) {
                     if (pianoPlayed==true) {
-                        System.out.println("You smack the drum as hard as you can. You hear a familiar loud metal grinding sound from the north.");
+                        System.out.println("You pick up the drumsticks and smack the drum as hard as you can, causing dust to fly everywhere. You hear a familiar loud metal grinding sound from the north.");
                         doorLocked=false;
                     }
                 }
@@ -440,7 +440,7 @@ public class Main {
             }
 
         if (turnsLeft==0) {
-            System.out.println("Game Over. It appears you will be eternally trapped in this escape room...");
+            System.out.println("Game Over. You collapse in defeat, realizing that you have failed to escape. It appears you will be eternally trapped in this escape room...");
             System.exit(1);
         }
         promptUser();
